@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title th:text="${app.name}"></title>
+</head>
+<body>
+<h2 th:text="${app.id != null} ? 'Edit Application' : 'Create New Application'"></h2>
+
+<form th:action="@{/application/save}" th:object="${app}" method="post">
+    <!-- Id -->
+    <input type="hidden" th:if="${app.id != null}" th:field="*{id}">
+    <br>
+
+    <!-- Name -->
+    <label for="name">Name</label>
+    <input type="text" id="name" th:field="*{name}" placeholder="Enter application name" required>
+    <br>
+
+    <!-- Description -->
+    <label for="description">Description</label>
+    <input type="text" id="description" th:field="*{description}" placeholder="Enter description" required>
+    <br>
+
+    <!-- Company Name -->
+<!--    <label for="newCompany">Add New Company Name</label>-->
+<!--    <input type="text" id="newCompany" name="newCompany" placeholder="Enter company name">-->
+<!--    <br>-->
+
+<!--    <label for="companySelect">Or Select Existing Company</label>-->
+<!--    <select id="companySelect" th:field="*{company}">-->
+<!--        <option value="" th:text="'Select Company'"></option>-->
+<!--        <option th:each="company : ${companies}" th:value="${company}" th:text="${company.name}"></option>-->
+<!--    </select>-->
+<!--    <br>-->
+
+    <!-- Application Date -->
+    <label for="application_date">Application Date</label>
+    <input type="date" id="application_date" th:field="*{applicationDate}">
+    <br>
+
+    <!-- Applied -->
+    <label for="applied">Applied:</label>
+    <input type="checkbox" id="applied" th:field="*{applied}">
+    <br>
+
+    <!-- Answered -->
+    <label for="answered">Answered:</label>
+    <input type="checkbox" id="answered" th:field="*{answered}">
+    <br>
+
+    <!-- Active -->
+    <label for="active">Active:</label>
+    <input type="checkbox" id="active" th:field="*{active}">
+    <br>
+
+    <button type="submit" th:text="'Save Application'"></button>
+</form>
+
+<!-- Back -->
+<a th:href="@{/application}">Back</a>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title th:text="${app.name}"></title>
+</head>
+<body>
+
+    <h1>Application Detail</h1>
+
+    <div th:if="${app != null}">
+        <p><strong>ID:</strong> <span th:text="${app.id}"></span></p>
+        <p><strong>Name:</strong> <span th:text="${app.name}"></span></p>
+        <p><strong>Description:</strong> <span th:text="${app.description}"></span></p>
+        <p><strong>Application Date:</strong> <span th:text="${app.applicationDate}"></span></p>
+
+    </div>
+
+    <div th:if="${app == null}">
+        <p>Application not found.</p>
+    </div>
+
+    <a th:href="@{/applications}">Back to applications list</a>
+
+</body>
+</html>

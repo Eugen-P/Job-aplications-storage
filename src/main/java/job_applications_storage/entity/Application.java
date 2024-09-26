@@ -1,10 +1,12 @@
 package job_applications_storage.entity;
 
-import javax.persistence.*;
-import java.util.Date;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.persistence.*;
+//import java.util.Date;
+import java.time.LocalDate;
 @Entity
-@Table(name = "application")
+@Table(name = "applications")
 public class Application {
 
     @Id
@@ -30,12 +32,13 @@ public class Application {
     @Column(name = "correspondence")
     private String correspondence;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "application_date")
-    private Date applicationDate;
+    private LocalDate applicationDate;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "company_id")
-    private Company company;
+//    @ManyToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "company_id")
+//    private Company company;
 
     public Application() {
     }
@@ -43,7 +46,7 @@ public class Application {
     public Application(String name, String description,
                        boolean applied, boolean answered,
                        boolean active, String correspondence,
-                       Date applicationDate, Company company) {
+                       LocalDate applicationDate, Company company) {
         this.name = name;
         this.description = description;
         this.applied = applied;
@@ -51,7 +54,7 @@ public class Application {
         this.active = active;
         this.correspondence = correspondence;
         this.applicationDate = applicationDate;
-        this.company = company;
+//        this.company = company;
     }
 
     public int getId() {
@@ -110,19 +113,19 @@ public class Application {
         this.correspondence = correspondence;
     }
 
-    public Date getApplicationDate() {
+    public LocalDate getApplicationDate() {
         return applicationDate;
     }
 
-    public void setApplicationDate(Date applicationDate) {
+    public void setApplicationDate(LocalDate applicationDate) {
         this.applicationDate = applicationDate;
     }
 
-    public Company getCompany() {
-        return company;
-    }
-
-    public void setCompany(Company company) {
-        this.company = company;
-    }
+//    public Company getCompany() {
+//        return company;
+//    }
+//
+//    public void setCompany(Company company) {
+//        this.company = company;
+//    }
 }

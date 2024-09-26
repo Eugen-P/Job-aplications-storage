@@ -1,28 +1,76 @@
 package job_applications_storage;
 
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import job_applications_storage.entity.Application;
+import job_applications_storage.entity.Company;
+import job_applications_storage.services.ApplicationService;
+import job_applications_storage.services.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
 
 import java.util.List;
 
 @Controller
 public class MyController {
+
     @Autowired
-    private SessionFactory sessionFactory;
-    @Transactional
-    @RequestMapping("/")
+    private ApplicationService applicationService;
+
+    @Autowired
+    private CompanyService companyService;
+
+    @GetMapping("/applications")
     public String show(Model model) {
-        Session session = sessionFactory.getCurrentSession();
-
-        List<test> list = session.createQuery("from test").getResultList();
-        model.addAttribute("list", list);
-
+        List<Application> applications = applicationService.getAllApplications();
+        model.addAttribute("applications", applications);
         return "index";
     }
+
+    @GetMapping("/applications/{id}")
+    public String showApplicationDetails(@PathVariable("id") int id , Model model) {
+        Application application = applicationService.getApplicationById(id);
+        model.addAttribute("app", application);
+        return "application-info";
+    }
+
+    @GetMapping("/applications/new")
+    public String addNewApplication(Model model) {
+        Application app = new Application();
+        model.addAttribute("app", app);
+//        model.addAttribute("companies", companyService.getAllCompanies());
+        return "application-edit";
+    }
+
+    @PostMapping("/application/save")
+    public String saveApplication(@ModelAttribute("app") Application application
+//            ,                        @RequestParam(value = "newCompany", required = false) String newCompany
+            )
+    {
+//        if (newCompany != null && !newCompany.trim().isEmpty()) {
+//            Company company = new Company();
+//            company.setName(newCompany);
+//            companyService.saveCompany(company);
+//            application.setCompany(company); // Устанавливаем новую компанию
+//        }
+        applicationService.saveApplication(application);
+        return "redirect:/applications";
+    }
+
+    @GetMapping("applications/edit/{id}")
+    public String editApplication(@PathVariable("id") int id, Model model ) {
+        Application app = applicationService.getApplicationById(id);
+        model.addAttribute("app", app);
+        model.addAttribute("companies", companyService.getAllCompanies());
+        return "application-edit";
+    }
+
+    @PostMapping("/application/update")
+    public String updateApplication(@ModelAttribute("app") Application application) {
+        applicationService.saveApplication(application);
+        return "redirect:/applications";
+    }
+
 }
