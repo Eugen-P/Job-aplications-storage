@@ -40,13 +40,13 @@ public class MyController {
     public String addNewApplication(Model model) {
         Application app = new Application();
         model.addAttribute("app", app);
-//        model.addAttribute("companies", companyService.getAllCompanies());
+        model.addAttribute("companies", companyService.getAllCompanies());
         return "application-edit";
     }
 
     @PostMapping("/application/save")
     public String saveApplication(@ModelAttribute("app") Application application
-//            ,                        @RequestParam(value = "newCompany", required = false) String newCompany
+            ,                        @ModelAttribute("company") Company company
             )
     {
 //        if (newCompany != null && !newCompany.trim().isEmpty()) {
@@ -55,7 +55,9 @@ public class MyController {
 //            companyService.saveCompany(company);
 //            application.setCompany(company); // Устанавливаем новую компанию
 //        }
+//        companyService.saveCompany(company);
         applicationService.saveApplication(application);
+
         return "redirect:/applications";
     }
 

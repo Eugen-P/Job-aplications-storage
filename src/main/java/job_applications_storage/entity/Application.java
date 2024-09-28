@@ -36,9 +36,9 @@ public class Application {
     @Column(name = "application_date")
     private LocalDate applicationDate;
 
-//    @ManyToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "company_id")
-//    private Company company;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "company_id")
+    private Company company;
 
     public Application() {
     }
@@ -54,7 +54,7 @@ public class Application {
         this.active = active;
         this.correspondence = correspondence;
         this.applicationDate = applicationDate;
-//        this.company = company;
+        this.company = company;
     }
 
     public int getId() {
@@ -121,11 +121,11 @@ public class Application {
         this.applicationDate = applicationDate;
     }
 
-//    public Company getCompany() {
-//        return company;
-//    }
-//
-//    public void setCompany(Company company) {
-//        this.company = company;
-//    }
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
 }

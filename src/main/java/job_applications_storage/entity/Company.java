@@ -3,7 +3,7 @@ package job_applications_storage.entity;
 import javax.persistence.*;
 import java.util.List;
 
-//@Entity
+@Entity
 @Table(name = "company")
 public class Company {
 
@@ -21,8 +21,8 @@ public class Company {
     @Column(name = "notes")
     private String notes;
 
-//    @OneToMany(mappedBy = "company")
-//    private List<Application> applications;
+    @OneToMany(mappedBy = "company")
+    private List<Application> applications;
 
     public Company() {
     }
@@ -31,7 +31,7 @@ public class Company {
         this.name = name;
         this.logo_url = logo_url;
         this.notes = notes;
-//        this.applications = applications;
+        this.applications = applications;
     }
 
     public int getId() {
@@ -66,11 +66,11 @@ public class Company {
         this.notes = notes;
     }
 
-//    public List<Application> getApplications() {
-//        return applications;
-//    }
-//
-//    public void setApplications(List<Application> applications) {
-//        this.applications = applications;
-//    }
+    public List<Application> getApplications() {
+        return applications;
+    }
+
+    public void setApplications(List<Application> applications) {
+        this.applications = applications;
+    }
 }
