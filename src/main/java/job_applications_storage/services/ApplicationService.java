@@ -28,4 +28,8 @@ public class ApplicationService {
     public void deleteApplication(int id) {
         applicationDAO.deleteById(id);
     }
+//    @Transactional
+//    public void deleteByCompanyId(int id) {
+//        applicationDAO.deleteByCompanyId(id);
+//    }
 }

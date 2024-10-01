@@ -16,12 +16,12 @@ public class Company {
     private String name;
 
     @Column(name = "logo_url")
-    private String logo_url;
+    private String logoUrl;
 
     @Column(name = "notes")
     private String notes;
 
-    @OneToMany(mappedBy = "company")
+    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
     private List<Application> applications;
 
     public Company() {
@@ -29,7 +29,7 @@ public class Company {
 
     public Company(String name, String logo_url, String notes, List<Application> applications) {
         this.name = name;
-        this.logo_url = logo_url;
+        this.logoUrl = logo_url;
         this.notes = notes;
         this.applications = applications;
     }
@@ -50,12 +50,12 @@ public class Company {
         this.name = name;
     }
 
-    public String getLogo_url() {
-        return logo_url;
+    public String getLogoUrl() {
+        return logoUrl;
     }
 
-    public void setLogo_url(String logo_url) {
-        this.logo_url = logo_url;
+    public void setLogoUrl(String logoUrl) {
+        this.logoUrl = logoUrl;
     }
 
     public String getNotes() {
@@ -72,5 +72,16 @@ public class Company {
 
     public void setApplications(List<Application> applications) {
         this.applications = applications;
+    }
+
+    @Override
+    public String toString() {
+        return "Company{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", logo_url='" + logoUrl + '\'' +
+                ", notes='" + notes + '\'' +
+                ", applications=" + applications +
+                '}';
     }
 }

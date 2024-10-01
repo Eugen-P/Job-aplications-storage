@@ -39,4 +39,14 @@ public class ApplicationDAOImpl implements ApplicationDAO {
         Application application = getSession().find(Application.class, id);
         getSession().delete(application);
     }
+
+    @Override
+    public void deleteByCompanyId(int id) {
+        List<Application> applications = getSession().createQuery("FROM Application WHERE company.id = :companyId")
+                .setParameter("companyId", id)
+                .list();
+        for (Application app : applications) {
+            getSession().delete(app);
+        }
+    }
 }

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Companies</title>
+
+</head>
+<body>
+    <h2>Companies</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th></td>
+            <th></th>
+            <th>Company Name</th>
+            <th>Notes</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="company : ${companies}">
+                <td th:text="${company.id}"></td>
+                <td>
+                    <img th:src="${company.logoUrl}" alt="Company Logo">
+                </td>
+                <td th:text="${company.name}"></td>
+                <td th:text="${company.notes}"></td>
+                <td>
+                    <form th:action="@{/companies/{id}(id=${company.id})}" method="get">
+                        <button type="submit">View Details</button>
+                    </form>
+                    <form th:action="@{/companies/{id}/delete(id=${company.id})}" method="post">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/applications}">List Of Applications</a>
+</body>
+</html>

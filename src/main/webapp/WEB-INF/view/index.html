@@ -48,15 +48,27 @@
                 <span th:if="${app.active}" class="checked">&#x2714;</span>
                 <span th:if="${!app.active}"></span>
             </td>
-<!--            <td th:text="${app.company.name}"></td>-->
+            <td >
+                 <span th:if="${app.company != null}">
+                    <a th:href="@{/companies/{id}(id=${app.company.id})}" th:text="${app.company.name}"></a>
+                </span>
+                <span th:if="${app.company == null}">
+                    No Company
+                </span>
+            </td>
             <td th:text="${app.applicationDate}"></td>
             <td>
-                <a th:href="@{/applications/{id}(id=${app.id})}">View Details</a>
+                <form th:action="@{/applications/{id}(id=${app.id})}" method="get">
+                    <button type="submit">View Details</button>
+                </form>
+                <form th:action="@{/applications/{id}/delete(id=${app.id})}" method="post">
+                    <button type="submit">Delete</button>
+                </form>
             </td>
         </tr>
         </tbody>
     </table>
     <a th:href="@{/applications/new}">Add New Application</a>
-
+    <a th:href="@{/companies}">List Of Companies</a>
 </body>
 </html>

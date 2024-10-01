@@ -26,16 +26,16 @@
     <br>
 
     <!-- Company Name -->
-    <label for="newCompany">Add New Company Name</label>
+    <label for="newCompany">Add Company Name</label>
     <input type="text" id="newCompany" th:field="*{company.name}" placeholder="Enter company name">
     <br>
 
 <!--    <label for="companySelect">Or Select Existing Company</label>-->
-<!--    <select id="companySelect" th:field="*{company}">-->
+<!--    <select id="companySelect" th:object="${company}" >-->
 <!--        <option value="" th:text="'Select Company'"></option>-->
-<!--        <option th:each="company : ${companies}" th:value="${company}" th:text="${company.name}"></option>-->
+<!--        <option th:each="comp : ${companies}" th:object="${comp}" th:text="${comp.name}"></option>-->
 <!--    </select>-->
-<!--    <br>-->
+    <br>
 
     <!-- Application Date -->
     <label for="application_date">Application Date</label>

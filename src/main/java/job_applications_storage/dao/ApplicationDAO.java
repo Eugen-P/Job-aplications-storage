@@ -9,4 +9,6 @@ public interface ApplicationDAO {
     List<Application> findAll();
     void save(Application application);
     void deleteById(int id);
+
+    void deleteByCompanyId(int id);
 }

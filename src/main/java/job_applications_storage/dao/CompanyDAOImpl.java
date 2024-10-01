@@ -35,9 +35,7 @@ public class CompanyDAOImpl implements CompanyDAO {
 
     @Override
     public void deleteById(int id) {
-        Company company = findById(id);
-        if(company != null) {
-            getSession().delete(company);
-        }
+        Company company = getSession().find(Company.class, id);
+        getSession().delete(company);
     }
 }

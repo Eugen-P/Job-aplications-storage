@@ -29,4 +29,5 @@ public class CompanyService {
     public void deleteCompany(int id) {
         companyDAO.deleteById(id);
     }
+
 }

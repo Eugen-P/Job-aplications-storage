@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title th:text="${company.name}"></title>
+</head>
+<body>
+<h1>Application Detail</h1>
+
+<div>
+    <p><strong>ID:</strong> <span th:text="${company.id}"></span></p>
+    <img th:src="${company.logoUrl}" alt="Company logo">
+    <p><strong>Name:</strong> <span th:text="${company.name}"></span></p>
+    <p><strong>Description:</strong> <span th:text="${company.notes}"></span></p>
+</div>
+
+<a th:href="@{/companies}">Back To Companies List</a>
+
+</body>
+</html>
