@@ -26,7 +26,7 @@
                     <img th:src="${company.logoUrl}" alt="Company Logo">
                 </td>
                 <td th:text="${company.name}"></td>
-                <td th:text="${company.notes}"></td>
+
                 <td>
                     <form th:action="@{/companies/{id}(id=${company.id})}" method="get">
                         <button type="submit">View Details</button>

@@ -16,6 +16,7 @@
         <p><strong>Name:</strong> <span th:text="${app.name}"></span></p>
         <p><strong>Description:</strong> <span th:text="${app.description}"></span></p>
         <p><strong>Application Date:</strong> <span th:text="${app.applicationDate}"></span></p>
+        <p><strong>Correspondence:</strong> <pre th:text="${app.correspondence}"></pre></p>
 
     </div>
 
@@ -24,6 +25,6 @@
     </div>
 
     <a th:href="@{/applications}">Back to applications list</a>
-
+    <a th:href="@{/applications/edit/{id}(id=${app.id})}">Edit Application</a>
 </body>
 </html>

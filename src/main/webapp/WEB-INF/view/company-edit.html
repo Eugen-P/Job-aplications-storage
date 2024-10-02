@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title th:text="${company.name}"></title>
+</head>
+<body>
+
+    <form th:action="@{/companies/save}" th:object="${company}" method="post">
+        <!-- Id -->
+        <input type="hidden"  th:field="*{id}">
+        <br>
+        <label for="url">Company Logo URL</label>
+        <input  type="text" id="url" th:field="*{logoUrl}" placeholder="Enter Company Logo URL">
+        <!-- Name -->
+        <label for="name">Name</label>
+        <input type="text" id="name" th:field="*{name}" placeholder="Enter Company Name" required>
+        <br>
+
+        <br>
+        <label for="notes">Notes:</label>
+        <textarea id="notes" th:field="*{notes}" rows="30" cols="100"></textarea>
+        <button type="submit" th:text="'Save Changes'"></button>
+    </form>
+
+    <!-- Back -->
+    <a th:href="@{/companies}">Back</a>
+</body>
+</html>

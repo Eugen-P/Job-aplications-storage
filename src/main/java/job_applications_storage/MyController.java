@@ -58,50 +58,35 @@ public class MyController {
         return "application-edit";
     }
 
-    @PostMapping("/application/save")
-    public String saveApplication(@ModelAttribute("app") Application application
-            , @ModelAttribute("comp") Company comp
-            ,                        @ModelAttribute("newCompany") Company company)
-    {
-//        System.out.println();
-//        System.out.println();
-//        System.out.println();
-//        System.out.println(comp);
-//        System.out.println("***************************************************************************" +
-//                "******************************************************* comp" );
-//
-//        System.out.println();
-//        System.out.println();
-//        System.out.println();
-//        System.out.println(company);
-//        System.out.println("***************************************************************************" +
-//                "******************************************************* company");
-//
-//        System.out.println();
-//        System.out.println();
-//        System.out.println();
-//        System.out.println(application.getCompany());
-//        System.out.println("***************************************************************************" +
-//                "******************************************************* application.getCompany()");
-
-        if (company.getName().trim().isEmpty()) {
-            application.setCompany(comp);
-        }
-
+    @PostMapping("/applications/save")
+    public String saveApplication(@ModelAttribute("app") Application application) {
         applicationService.saveApplication(application);
-
-        return "redirect:/applications";
+        return "redirect:/applications/" + application.getId();
     }
+
+    @PostMapping("companies/save")
+    public String saveCompany(@ModelAttribute("company") Company company) {
+        companyService.saveCompany(company);
+        return "redirect:/companies/" + company.getId();
+    }
+
 
     @GetMapping("applications/edit/{id}")
     public String editApplication(@PathVariable("id") int id, Model model ) {
         Application app = applicationService.getApplicationById(id);
         model.addAttribute("app", app);
-        model.addAttribute("companies", companyService.getAllCompanies());
+//        model.addAttribute("companies", companyService.getAllCompanies());
         return "application-edit";
     }
 
-    @PostMapping("/application/update")
+    @GetMapping("companies/edit/{id}")
+    public String editCompany(@PathVariable("id") int id, Model model ) {
+        Company company = companyService.getCompanyById(id);
+        model.addAttribute("company", company);
+        return "company-edit";
+    }
+
+    @PostMapping("/applications/update")
     public String updateApplication(@ModelAttribute("app") Application application) {
         applicationService.saveApplication(application);
         return "redirect:/applications";

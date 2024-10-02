@@ -8,9 +8,8 @@
     <title th:text="${app.name}"></title>
 </head>
 <body>
-<h2 th:text="${app.id != null} ? 'Edit Application' : 'Create New Application'"></h2>
 
-<form th:action="@{/application/save}" th:object="${app}" method="post">
+<form th:action="@{/applications/save}" th:object="${app}" method="post">
     <!-- Id -->
     <input type="hidden" th:if="${app.id != null}" th:field="*{id}">
     <br>
@@ -56,11 +55,12 @@
     <label for="active">Active:</label>
     <input type="checkbox" id="active" th:field="*{active}">
     <br>
-
+    <label for="correspondence">Correspondence:</label>
+    <textarea id="correspondence" name="correspondence" th:field="*{correspondence}" rows="4" cols="50"></textarea>
     <button type="submit" th:text="'Save Application'"></button>
 </form>
 
 <!-- Back -->
-<a th:href="@{/application}">Back</a>
+<a th:href="@{/applications}">Back</a>
 </body>
 </html>
