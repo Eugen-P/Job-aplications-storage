@@ -38,4 +38,19 @@ public class CompanyDAOImpl implements CompanyDAO {
         Company company = getSession().find(Company.class, id);
         getSession().delete(company);
     }
+
+    @Override
+    public Company findByName(String name) {
+        try {
+            return getSession()
+                    .createQuery("FROM Company WHERE name = :name", Company.class)
+                    .setParameter("name", name)
+                    .uniqueResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+
 }

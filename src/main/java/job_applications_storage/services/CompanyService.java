@@ -30,4 +30,8 @@ public class CompanyService {
         companyDAO.deleteById(id);
     }
 
+    @Transactional
+    public Company getCompanyByName(String name) {
+        return  companyDAO.findByName(name);
+    }
 }

@@ -12,4 +12,5 @@ public interface CompanyDAO {
     List<Company> findAll();
     void save(Company company);
     void deleteById(int id);
+    Company findByName(String name);
 }

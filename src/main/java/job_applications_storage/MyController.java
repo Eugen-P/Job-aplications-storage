@@ -60,6 +60,12 @@ public class MyController {
 
     @PostMapping("/applications/save")
     public String saveApplication(@ModelAttribute("app") Application application) {
+        Company existingCompany = companyService.getCompanyByName(application.getCompany().getName());
+        if (existingCompany != null) {
+            application.setCompany(existingCompany);
+        } else {
+            companyService.saveCompany(application.getCompany());
+        }
         applicationService.saveApplication(application);
         return "redirect:/applications/" + application.getId();
     }
@@ -84,18 +90,6 @@ public class MyController {
         Company company = companyService.getCompanyById(id);
         model.addAttribute("company", company);
         return "company-edit";
-    }
-
-    @PostMapping("/applications/update")
-    public String updateApplication(@ModelAttribute("app") Application application) {
-        applicationService.saveApplication(application);
-        return "redirect:/applications";
-    }
-
-    @PostMapping("/companies/update")
-    public String updateCompany(@ModelAttribute("company") Company company) {
-        companyService.saveCompany(company);
-        return "redirect:/companies";
     }
 
     @PostMapping("/applications/{id}/delete")
