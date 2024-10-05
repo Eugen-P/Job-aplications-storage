@@ -19,20 +19,23 @@
                 <th style="width: 50px">#</th></td>
                 <th style="width: 100px"></th>
                 <th>Company Name</th>
-                <th style="width: 220px">Actions</th>
+                <th style="width: 305px">Actions</th>
             </tr>
             </thead>
             <tbody>
                 <tr th:each="company, stat : ${companies}">
                     <td th:text="${stat.count}"></td>
                     <td>
-                        <img th:src="${company.logoUrl}" alt="Company Logo" style="width: 100px">
+                        <img th:src="${company.logoUrl}" alt="Company Logo" style="width: 50px">
                     </td>
                     <td th:text="${company.name}"></td>
 
                     <td class="">
                         <form class="me-2 d-inline" th:action="@{/companies/{id}(id=${company.id})}" method="get">
                             <button class="btn btn-info" type="submit">View Details</button>
+                        </form>
+                        <form class="me-2 d-inline" th:action="@{/companies/edit/{id}(id=${company.id})}" method="get">
+                            <button class="btn btn-warning" type="submit">Change</button>
                         </form>
                         <form class="d-inline" th:action="@{/companies/{id}/delete(id=${company.id})}" method="post">
                             <button class="btn btn-danger" type="submit">Delete</button>

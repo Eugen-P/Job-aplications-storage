@@ -27,7 +27,7 @@
                 <th style="width: 100px">Active</th>
                 <th>Company</th>
                 <th>Application Date</th>
-                <th style="width: 220px">Actions</th>
+                <th style="width: 305px">Actions</th>
             </tr>
             </thead>
             <tbody>
@@ -56,7 +56,7 @@
                     <form class="me-2 d-inline" th:action="@{/applications/{id}(id=${app.id})}" method="get">
                         <button class="btn btn-info" type="submit">View Details</button>
                     </form>
-                    <form th:action="@{/applications/edit/{id}(id=${app.id})}" method="get">
+                    <form class="me-2 d-inline" th:action="@{/applications/edit/{id}(id=${app.id})}" method="get">
                         <button class="btn btn-warning" type="submit">Change</button>
                     </form>
                     <form class="d-inline" th:action="@{/applications/{id}/delete(id=${app.id})}" method="post">

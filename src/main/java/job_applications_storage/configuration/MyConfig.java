@@ -31,7 +31,7 @@ public class MyConfig {
 
         try {
             dataSource.setDriverClass("com.mysql.cj.jdbc.Driver");
-            dataSource.setJdbcUrl("jdbc:mysql://localhost:3306/job_applications_storage?useSSL=false&serverTimezone=UTC");
+            dataSource.setJdbcUrl("jdbc:mysql://localhost:3306/job_applications_storage?useSSL=false&serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8");
             dataSource.setUser("jasuser");
             dataSource.setPassword("jasuser");
         } catch (PropertyVetoException e) {
@@ -48,6 +48,8 @@ public class MyConfig {
         Properties hibernateProperties = new Properties();
         hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
         hibernateProperties.setProperty("hibernate.show.sql", "true");
+        hibernateProperties.setProperty("hibernate.connection.useUnicode", "true");
+        hibernateProperties.setProperty("hibernate.connection.characterEncoding", "UTF-8");
         return sessionFactory;
     }
 

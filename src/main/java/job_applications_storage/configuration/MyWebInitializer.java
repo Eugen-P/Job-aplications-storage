@@ -17,4 +17,5 @@ public class MyWebInitializer extends AbstractAnnotationConfigDispatcherServletI
     protected String[] getServletMappings() {
         return new String[]{"/"};
     }
+
 }
