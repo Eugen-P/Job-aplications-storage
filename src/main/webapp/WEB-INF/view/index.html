@@ -21,13 +21,13 @@
             <tr class="table-primary">
                 <th style="width: 50px">#</th>
                 <th>Name</th>
-                <th>Description</th>
+                <th style="width: 500px">Description</th>
                 <th style="width: 100px">Applied</th>
                 <th style="width: 100px">Answered</th>
                 <th style="width: 100px">Active</th>
                 <th>Company</th>
-                <th>Application Date</th>
-                <th style="width: 305px">Actions</th>
+                <th >Application Date</th>
+                <th style="min-width: 305px">Actions</th>
             </tr>
             </thead>
             <tbody>
@@ -35,17 +35,17 @@
             <tr th:each="app, stat : ${applications}"  th:class="${!app.active && app.answered} ? 'table-danger' : (${app.active && app.answered} ? 'table-success' : '')">
                 <td th:text="${stat.count}"></td>
                 <td th:text="${app.name}"></td>
-                <td th:text="${app.description}"></td>
+                <td ><p class="text-break" th:text="${app.description}"></p></td>
                 <td class="text-center">
-                    <span th:if="${app.applied}" class="checked">&#x2714;</span>
+                    <span th:if="${app.applied}" >&#x2714;</span>
                     <span th:if="${!app.applied}"></span>
                 </td>
                 <td class="text-center">
-                    <span th:if="${app.answered}" class="checked">&#x2714;</span>
+                    <span th:if="${app.answered}" >&#x2714;</span>
                     <span th:if="${!app.answered}"></span>
                 </td>
                 <td class="text-center">
-                    <span th:if="${app.active}" class="checked">&#x2714;</span>
+                    <span th:if="${app.active}" >&#x2714;</span>
                     <span th:if="${!app.active}"></span>
                 </td>
                 <td >
