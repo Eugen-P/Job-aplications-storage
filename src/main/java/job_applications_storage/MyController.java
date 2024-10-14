@@ -25,6 +25,7 @@ public class MyController {
     @GetMapping("/applications")
     public String showApplications(Model model) {
         List<Application> applications = applicationService.getAllApplications();
+        applications.sort((app1, app2) -> Boolean.compare(!app1.isApplied(), !app2.isApplied()));
         model.addAttribute("applications", applications);
         return "index";
     }
